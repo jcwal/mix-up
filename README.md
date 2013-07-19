@@ -1,3 +1,3 @@
-mix-ui
+mix-up
 ======
 Combine Bootstrap + Knockoutjs + JQuery together.

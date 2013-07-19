@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>mix-up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="mix-up ui demo">
+    <meta name="author" content="Jokeway">
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5.js"></script>
+    <![endif]-->
+
+    <!-- CSS -->
+    <link href="assets/css/site.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/prettify.css" rel="stylesheet">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/font-awesome-ie7.css">
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<div class="wrapper">
+    <div class="container">
+        <section id="buttons">
+            <h2 class="page-header">Buttons</h2>
+            <div class="row">
+                <div class="span3">
+                    <p>
+                        <a class="btn" href="#">
+                            <i class="icon-repeat"></i> Reload</a>
+                        <a class="btn btn-success" href="#">
+                            <i class="icon-shopping-cart icon-large"></i> Checkout</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-large btn-primary" href="#">
+                            <i class="icon-comment"></i> Comment</a>
+                        <a class="btn btn-small btn-info" href="#">
+                            <i class="icon-info-sign"></i> Info</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-danger" href="#">
+                            <i class="icon-trash icon-large"></i> Delete</a>
+                        <a class="btn btn-small" href="#">
+                            <i class="icon-cog"></i> Settings</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-large btn-danger" href="#">
+                            <i class="icon-flag icon-2x pull-left"></i> Font Awesome<br>Version 3.2.1</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">
+                            <i class="icon-refresh icon-spin"></i> Synchronizing Content...</a>
+                    </p>
+                </div>
+                <div class="span9">
+                    <p>
+                        Font Awesome icons work great in buttons. You can even combine them with larger icon styles,
+                        <code>pull-right</code> and <code>pull-left</code>, and <code>icon-spin</code>.
+                    </p>
+                    <pre class="prettyprint linenums"><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-repeat&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Reload<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-success&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-shopping-cart icon-large&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Checkout<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-large btn-primary&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-comment&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Comment<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-small btn-info&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-info-sign&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Info<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-danger&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-trash icon-large&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Delete<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-small&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-cog&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Settings<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-large btn-danger&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-flag icon-2x pull-left&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Font Awesome<span class="nt">&lt;br&gt;</span>Version 3.2.1<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;btn btn-primary&quot;</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">&quot;icon-refresh icon-spin&quot;</span><span class="nt">&gt;&lt;/i&gt;</span> Synchronizing Content...<span class="nt">&lt;/a&gt;</span></pre>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/prettify.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
