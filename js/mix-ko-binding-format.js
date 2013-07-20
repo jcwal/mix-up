@@ -18,9 +18,9 @@
     // extend text update for date && boolean
     var originValueUpdate = ko.bindingHandlers['value']['update'];
     ko.bindingHandlers['value']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var theValue = ko.unwrap(valueAccessor())
-            , formatValueAccessor = null
-            , type = allBindingsAccessor()['type'];
+        var theValue = ko.unwrap(valueAccessor()), type = allBindingsAccessor()['type'];
+        var formatValueAccessor = null;
+
         if (theValue != null && type != null) {
             switch (type) {
                 case 'date':
@@ -36,9 +36,9 @@
 
     var originTextUpdate = ko.bindingHandlers['text']['update'];
     ko.bindingHandlers['text']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var theValue = ko.unwrap(valueAccessor())
-            , formatValueAccessor = null
-            , type = allBindingsAccessor()['type'];
+        var theValue = ko.unwrap(valueAccessor()), type = allBindingsAccessor()['type'];
+        var formatValueAccessor = null;
+
         if (theValue != null && type != null) {
             switch (type) {
                 case 'bool' :
