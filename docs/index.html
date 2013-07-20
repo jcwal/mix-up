@@ -79,12 +79,35 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container" id="ko-binding-format">
+                <div class="row">
+                    <div class="span4">
+                        Text:<input type="text" data-bind="value: bValue, type: 'boolean'" />
+                        <br/>
+                        Checkbox: <input type="checkbox" data-bind="checked: bValue" />
+                        <br/>
+                        Span:<span data-bind="text: bValue, type: 'boolean'">&nbsp;</span>
+                    </div>
+                    <div class="span4">
+                        Date Text:<span data-bind="text: dValue, type: 'date'">&nbsp;</span>
+                        <br>
+                        DateTime Text:<span data-bind="text: dValue, type: 'dateTime'">&nbsp;</span>
+                        <br/>
+                        Time Text:<span data-bind="text: dValue, type: 'time'">&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/prettify.js"></script>
+<script src="assets/js/knockout.js"></script>
+<script src="assets/js/knockout.mapping.js"></script>
+<script src="assets/js/mix-up.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>
