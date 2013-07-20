@@ -21,7 +21,7 @@
         var theValue = ko.unwrap(valueAccessor())
             , formatValueAccessor = null
             , type = allBindingsAccessor()['type'];
-        if (theValue != null) {
+        if (theValue != null && type != null) {
             switch (type) {
                 case 'date':
                 case 'dateTime':
@@ -39,7 +39,7 @@
         var theValue = ko.unwrap(valueAccessor())
             , formatValueAccessor = null
             , type = allBindingsAccessor()['type'];
-        if (theValue != null) {
+        if (theValue != null && type != null) {
             switch (type) {
                 case 'bool' :
                 case'boolean':
