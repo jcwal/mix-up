@@ -19,40 +19,40 @@
     var originValueUpdate = ko.bindingHandlers['value']['update'];
     ko.bindingHandlers['value']['update'] = function (element, valueAccessor, allBindingsAccessor) {
         var theValue = ko.unwrap(valueAccessor())
-            , formatValueAccessor = ko.observable(theValue)
+            , formatValueAccessor = null
             , type = allBindingsAccessor()['type'];
         if (theValue != null) {
             switch (type) {
                 case 'date':
                 case 'dateTime':
                 case 'time':
-                    formatValueAccessor($.date.format(theValue, ko.defaults.format[type]));
+                    formatValueAccessor = ko.observable($.date.format(theValue, ko.defaults.format[type]));
                     break;
             }
         }
-        originValueUpdate(element, formatValueAccessor);
+        originValueUpdate(element, formatValueAccessor || valueAccessor);
     };
 
 
     var originTextUpdate = ko.bindingHandlers['text']['update'];
     ko.bindingHandlers['text']['update'] = function (element, valueAccessor, allBindingsAccessor) {
         var theValue = ko.unwrap(valueAccessor())
-            , formatValueAccessor = ko.observable(theValue)
+            , formatValueAccessor = null
             , type = allBindingsAccessor()['type'];
         if (theValue != null) {
             switch (type) {
                 case 'bool' :
                 case'boolean':
-                    formatValueAccessor(theValue ? (ko.defaults.format.yes || theValue) : (ko.defaults.format.no || theValue));
+                    formatValueAccessor = ko.observable(theValue ? (ko.defaults.format.yes || theValue) : (ko.defaults.format.no || theValue));
                     break;
                 case 'date':
                 case 'dateTime':
                 case 'time':
-                    formatValueAccessor($.date.format(theValue, ko.defaults.format[type]));
+                    formatValueAccessor = ko.observable($.date.format(theValue, ko.defaults.format[type]));
                     break;
             }
         }
-        originTextUpdate(element, formatValueAccessor);
+        originTextUpdate(element, formatValueAccessor || valueAccessor);
     }
 
 })();
