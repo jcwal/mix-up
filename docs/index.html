@@ -86,13 +86,33 @@
                             <p><span data-bind="text: sValue"/></p>
                             <p><span data-bind="text: sValue, format: { 'dev':'开发', 'test':'测试', 'prd': '生产' }"/></p>
                             <p><span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></p>
+                            <p><span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></p>
                         </div>
                     </div>
                     <div class="span8">
 <pre class="prettyprint linenums">&lt;p>&lt;input data-bind="value: sValue"/>&lt;/p>
 &lt;p>&lt;span data-bind="text: sValue"/>&lt;/p>
 &lt;p>&lt;span data-bind="text: sValue, format: { 'dev':'开发', 'test':'测试', 'prd': '生产' }"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p></pre>
+&lt;p>&lt;span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p>
+&lt;p>&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p></pre>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4">
+                        <div class="prettyprint">
+                            <p><span data-bind="text: ['true','false'], format:{'true':'对','false':'错'} "/></p>
+                            <p><span data-bind="text: [false,true], format:{'true':'对','false':'错'} "/></p>
+                            <p><span data-bind="text: 'true,false', format:{'true':'对','false':'错'}, split: true "/></p>
+                            <p><span data-bind="text: 'false^false', format:{'true':'对','false':'错'}, split: '^' "/></p>
+                            <p><span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></p>
+                        </div>
+                    </div>
+                    <div class="span8">
+<pre class="prettyprint linenums">&lt;p>&lt;span data-bind="text: ['true','false'], format:{'true':'对','false':'错'} "/>&lt;/p>
+&lt;p>&lt;span data-bind="text: [false,true], format:{'true':'对','false':'错'} "/>&lt;/p>
+&lt;p>&lt;span data-bind="text: 'true,false', format:{'true':'对','false':'错'}, split: true "/>&lt;/p>
+&lt;p>&lt;span data-bind="text: 'false^false', format:{'true':'对','false':'错'}, split: '^' "/>&lt;/p>
+&lt;p>&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p></pre>
                     </div>
                 </div>
             </div>

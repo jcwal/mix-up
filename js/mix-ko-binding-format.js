@@ -18,54 +18,74 @@
             'false': '×'
         }
     });
+    ko.defaults.string = $.extend(ko.defaults.string || {}, {
+        'split': ',',
+        'join': '，'
+    });
 
     function isDeferred(deferred) {
         return deferred && $.isFunction(deferred.always) && $.isFunction(deferred.promise);
     }
 
-    function resolveFormatValueAccessor(valueAccessor, format) {
-        var theValue = ko.unwrap(valueAccessor()), formatValueAccessor = null;
-        if ($.isFunction(format)) {
-            formatValueAccessor = ko.observable(format(theValue));
-        } else if (format != null) {
-            if (typeof theValue == 'boolean' || theValue instanceof Boolean) {
-                var formatValues = (format === true || format === 'true') ? ko.defaults.format['Boolean'] : format;
-                formatValues[theValue] && (formatValueAccessor = ko.observable(formatValues[theValue]));
-            } else if (theValue instanceof Date) {
-                var formatPattern = ko.defaults.format['Date'][format] || format;
-                formatPattern && (formatValueAccessor = ko.observable($.date.format(theValue, formatPattern)));
-            } else {
-                format[theValue] != undefined && (formatValueAccessor = ko.observable(format[theValue]));
-            }
+    function resolveFormatValueAccessor(valueAccessor, options) {
+        var theValue = ko.unwrap(valueAccessor()), formattedValues = [];
+        if (typeof theValue === 'string' && options.split) {
+            theValue = theValue.split((options.split === true || options.split === 'true') ? ko.defaults.string.split : options.split);
         }
-        return formatValueAccessor || valueAccessor;
+        $($.isArray(theValue) ? theValue : [theValue]).each(function (index, value) {
+            typeof value === 'string' && (value = $.trim(value));
+            if ($.isFunction(options.format)) {
+                value = options.format(value);
+            } else if (options.format != null) {
+                if (typeof value == 'boolean' || value instanceof Boolean) {
+                    var fvs = (options.format === true || options.format === 'true') ? ko.defaults.format['Boolean'] : options.format;
+                    fvs[value] && (value = fvs[value]);
+                } else if (value instanceof Date) {
+                    var formatPattern = ko.defaults.format['Date'][options.format] || options.format;
+                    formatPattern && (value = $.date.format(value, formatPattern));
+                } else {
+                    options.format[value] != undefined && (value = options.format[value]);
+                }
+            }
+            formattedValues.push(value);
+        });
+        return ko.observable(formattedValues.join((options.join == null || options.join === true || options.join === 'true') ? ko.defaults.string.join : options.join));
     }
 
-    function updateFormatBinding(element, valueAccessor, format, callback) {
+    function updateFormatBinding(element, valueAccessor, allBindingsAccessor, callback) {
+        var format = $(element).data('format-deferred') || allBindingsAccessor()['format'] || $(element).data('format');
+
+        if (format == null) {
+            callback(element, valueAccessor);
+        }
+
+        var options = {
+            format: format,
+            split: allBindingsAccessor()['split'] || $(element).data('split'),
+            join: allBindingsAccessor()['join'] || $(element).data('join')
+        }
+
         if (isDeferred(format)) {
             callback(element, valueAccessor());  // TODO without this line, the update doesn't effect on change,why?
             format.always(function (data) {
                 $(element).data('format-deferred', data);
-                updateFormatBinding(element, valueAccessor, data, callback);
+                updateFormatBinding(element, valueAccessor, allBindingsAccessor, callback);
             });
             return;
         }
-        callback(element, resolveFormatValueAccessor(valueAccessor, format));
+        callback(element, resolveFormatValueAccessor(valueAccessor, options));
     }
 
-    // extend text update for date && boolean
     var originValueUpdate = ko.bindingHandlers['value']['update'];
     ko.bindingHandlers['value']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var format = $(element).data('format-deferred') || allBindingsAccessor()['format'] || $(element).data('format');
-        updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
+        updateFormatBinding(element, valueAccessor, allBindingsAccessor, function (el, formatValueAccessor) {
             originValueUpdate(el, formatValueAccessor);
         });
     };
 
     var originTextUpdate = ko.bindingHandlers['text']['update'];
     ko.bindingHandlers['text']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var format = $(element).data('format-deferred') || allBindingsAccessor()['format'] || $(element).data('format');
-        updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
+        updateFormatBinding(element, valueAccessor, allBindingsAccessor, function (el, formatValueAccessor) {
             originTextUpdate(el, formatValueAccessor);
         });
     }

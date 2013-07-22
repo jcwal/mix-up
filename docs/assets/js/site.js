@@ -10,7 +10,7 @@
 
 
         var bindingFormatModel = ko.mapping.fromJS({
-            bValue: true,
+            bValue: false,
             dValue: new Date(),
             sValue: 'test'
         });
