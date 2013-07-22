@@ -7,52 +7,65 @@
 (function () {
     ko.defaults = ko.defaults || {};
 
-    ko.defaults.format = {
-        date: 'yyyy-MM-dd',
-        dateTime: 'yyyy-MM-dd HH:mm:ss',
-        time: 'HH:mm:ss',
-        yes: '√',
-        no: '×'
-    };
+    ko.defaults.format = $.extend(ko.defaults.format || {}, {
+        'Date': {
+            date: 'yyyy-MM-dd',
+            dateTime: 'yyyy-MM-dd HH:mm:ss',
+            time: 'HH:mm:ss'
+        },
+        'Boolean': {
+            'true': '√',
+            'false': '×'
+        }
+    });
+
+    function isDeferred(deferred) {
+        return deferred && $.isFunction(deferred.always) && $.isFunction(deferred.promise);
+    }
+
+    function resolveFormatValueAccessor(valueAccessor, format) {
+        var theValue = ko.unwrap(valueAccessor()), formatValueAccessor = null;
+        if ($.isFunction(format)) {
+            formatValueAccessor = ko.observable(format(theValue));
+        } else if (format != null) {
+            if (typeof theValue == 'boolean' || theValue instanceof Boolean) {
+                var formatValues = (format === true || format === 'true') ? ko.defaults.format['Boolean'] : format;
+                formatValues[theValue] && (formatValueAccessor = ko.observable(formatValues[theValue]));
+            } else if (theValue instanceof Date) {
+                var formatPattern = ko.defaults.format['Date'][format] || format;
+                formatPattern && (formatValueAccessor = ko.observable($.date.format(theValue, formatPattern)));
+            } else {
+                format[theValue] != undefined && (formatValueAccessor = ko.observable(format[theValue]));
+            }
+        }
+        return formatValueAccessor || valueAccessor;
+    }
+
+    function updateFormatBinding(element, valueAccessor, format, callback) {
+        if (isDeferred(format)) {
+            format.always(function (data) {
+                updateFormatBinding(element, valueAccessor, data, callback);
+            });
+            return;
+        }
+        callback(element, resolveFormatValueAccessor(valueAccessor, format));
+    }
 
     // extend text update for date && boolean
     var originValueUpdate = ko.bindingHandlers['value']['update'];
     ko.bindingHandlers['value']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var theValue = ko.unwrap(valueAccessor()), type = ko.unwrap(allBindingsAccessor()['type']);
-        var formatValueAccessor = null;
-
-        if (theValue != null && type != null) {
-            switch (type) {
-                case 'date':
-                case 'dateTime':
-                case 'time':
-                    formatValueAccessor = ko.observable($.date.format(theValue, ko.defaults.format[type]));
-                    break;
-            }
-        }
-        originValueUpdate(element, formatValueAccessor || valueAccessor);
+        var format = allBindingsAccessor()['format'] || $(element).data('format');
+        updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
+            originValueUpdate(el, formatValueAccessor);
+        });
     };
-
 
     var originTextUpdate = ko.bindingHandlers['text']['update'];
     ko.bindingHandlers['text']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var theValue = ko.unwrap(valueAccessor()), type = ko.unwrap(allBindingsAccessor()['type']);
-        var formatValueAccessor = null;
-
-        if (theValue != null && type != null) {
-            switch (type) {
-                case 'bool' :
-                case'boolean':
-                    formatValueAccessor = ko.observable(theValue ? (ko.defaults.format.yes || theValue) : (ko.defaults.format.no || theValue));
-                    break;
-                case 'date':
-                case 'dateTime':
-                case 'time':
-                    formatValueAccessor = ko.observable($.date.format(theValue, ko.defaults.format[type]));
-                    break;
-            }
-        }
-        originTextUpdate(element, formatValueAccessor || valueAccessor);
+        var format = allBindingsAccessor()['format'] || $(element).data('format');
+        updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
+            originTextUpdate(el, formatValueAccessor);
+        });
     }
 
 })();

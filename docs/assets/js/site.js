@@ -11,12 +11,22 @@
 
         var bindingFormatModel = ko.mapping.fromJS({
             bValue: true,
-            dValue: new Date()
+            dValue: new Date(),
+            sValue: 'test'
         });
+        bindingFormatModel.deferredFormat = $.Deferred();
+
         ko.applyBindings(bindingFormatModel, $('#ko-binding-format')[0]);
 
         setInterval(function () {
             bindingFormatModel.dValue(new Date());
         }, 1000);
+
+        setTimeout(function () {
+            bindingFormatModel.deferredFormat.resolve({
+                'true': 'Deferred TRUE',
+                'false': 'Deferred FALSE'
+            });
+        }, 3000);
     });
 }(window.jQuery);
