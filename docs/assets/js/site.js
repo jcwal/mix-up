@@ -23,10 +23,11 @@
         }, 1000);
 
         setTimeout(function () {
-            bindingFormatModel.deferredFormat.resolve({
-                'true': 'Deferred TRUE',
-                'false': 'Deferred FALSE'
-            });
+            var result = {
+                'true': 'Deferred: TRUE',
+                'false': 'Deferred: FALSE'
+            };
+            bindingFormatModel.deferredFormat.resolve(result);
         }, 3000);
     });
 }(window.jQuery);

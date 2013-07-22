@@ -43,7 +43,9 @@
 
     function updateFormatBinding(element, valueAccessor, format, callback) {
         if (isDeferred(format)) {
+            callback(element, valueAccessor());  // TODO without this line, the update doesn't effect on change,why?
             format.always(function (data) {
+                $(element).data('format-deferred', data);
                 updateFormatBinding(element, valueAccessor, data, callback);
             });
             return;
@@ -54,7 +56,7 @@
     // extend text update for date && boolean
     var originValueUpdate = ko.bindingHandlers['value']['update'];
     ko.bindingHandlers['value']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var format = allBindingsAccessor()['format'] || $(element).data('format');
+        var format = $(element).data('format-deferred') || allBindingsAccessor()['format'] || $(element).data('format');
         updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
             originValueUpdate(el, formatValueAccessor);
         });
@@ -62,7 +64,7 @@
 
     var originTextUpdate = ko.bindingHandlers['text']['update'];
     ko.bindingHandlers['text']['update'] = function (element, valueAccessor, allBindingsAccessor) {
-        var format = allBindingsAccessor()['format'] || $(element).data('format');
+        var format = $(element).data('format-deferred') || allBindingsAccessor()['format'] || $(element).data('format');
         updateFormatBinding(element, valueAccessor, format, function (el, formatValueAccessor) {
             originTextUpdate(el, formatValueAccessor);
         });

@@ -84,17 +84,22 @@
                 <h2 class="page-header">Format Bindings</h2>
                 <div class="row">
                     <div class="span4">
-                        <p><span data-bind="text: bValue, format: deferredFormat"/></p>
+                        <!--
                         <p><input data-bind="value: bValue"/></p>
-                        <p><span data-bind="text: bValue"/></p>
-                        <p><input data-bind="checked: bValue" type="checkbox"/></p>
+                        <p><span data-bind="text: bValue"/></p>  -->
+                        <p><input data-bind="checked: bValue" type="checkbox"/></p><!--
                         <p><span data-bind="text: bValue, format: true"/></p>
                         <p><span data-bind="text: bValue" data-format="true"/></p>
                         <p><span data-bind="text: bValue, format:{'true':'对','false':'错'} "/></p>
-                        <p><span data-bind="text: bValue" data-format='{"true":"真","false":"假"}'/></p>
-                        <p><span data-bind="text: bValue, format: function(x) { return 'Boolean:'+x;} "/></p>
+                        <p><span data-bind="text: bValue" data-format='{"true":"Object:真","false":"Object:假"}'/></p>
+                        <p><span data-bind="text: bValue, format: function(x) { return 'Function:'+x;} "/></p>
+                        -->
+                        <p><span data-bind="text: bValue, format: deferredFormat"/></p>
+                        <p><input data-bind="value: bValue, format: deferredFormat"/></p>
+                        <div data-bind="slideVisible: bValue, slideDuration:600">You have selected the option</div>
 
                     </div>
+                    <!--
                     <div class="span4">
                         <p><input data-bind="value: dValue, format: 'dateTime'"/></p>
                         <p><span data-bind="text: dValue, format: 'date'"/></p>
@@ -102,7 +107,7 @@
                         <p><span data-bind="text: dValue, format: 'time'"/></p>
                         <p><span data-bind="text: dValue, format: 'yyyy-HH:ss'"/></p>
                         <p><span data-bind="text: dValue" data-format="MM-dd hh:MM:ss"/></p>
-                        <p><span data-bind="text: dValue, format: function(x){ return 'Date:'+ x; }"/></p>
+                        <p><span data-bind="text: dValue, format: function(x){ return 'Function:'+ x; }"/></p>
                     </div>
                     <div class="span4">
                         <p><input data-bind="value: sValue"/></p>
@@ -110,6 +115,7 @@
                         <p><span data-bind="text: sValue, format: { 'dev':'开发', 'test':'测试', 'prd': '生产' }"/></p>
                         <p><span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></p>
                     </div>
+                    -->
                 </div>
             </div>
         </section>
