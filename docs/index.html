@@ -43,16 +43,16 @@
                         </div>
                     </div>
                     <div class="span8">
-<pre class="prettyprint linenums">&lt;p>&lt;input data-bind="value: bValue"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue"/>&lt;/p>
-&lt;p>&lt;input data-bind="checked: bValue" type="checkbox"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue, format: true"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue" data-format="true"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue, format:{'true':'对','false':'错'} "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue" data-format='{"true":"Object:真","false":"Object:假"}'/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue, format: function(x) { return 'Function:'+x;} "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: bValue, format: deferredFormat"/>&lt;/p>
-&lt;p>&lt;input data-bind="value: bValue, format: deferredFormat"/>&lt;/p></pre>
+<pre class="prettyprint linenums">&lt;input data-bind="value: bValue"/>
+&lt;span data-bind="text: bValue"/>
+&lt;input data-bind="checked: bValue" type="checkbox"/>
+&lt;span data-bind="text: bValue, format: true"/>
+&lt;span data-bind="text: bValue" data-format="true"/>
+&lt;span data-bind="text: bValue, format:{'true':'对','false':'错'} "/>
+&lt;span data-bind="text: bValue" data-format='{"true":"Object:真","false":"Object:假"}'/>
+&lt;span data-bind="text: bValue, format: function(x) { return 'Function:'+x;} "/>
+&lt;span data-bind="text: bValue, format: deferredFormat"/>
+&lt;input data-bind="value: bValue, format: deferredFormat"/></pre>
                     </div>
                 </div>
                 <br/>
@@ -69,13 +69,13 @@
                         </div>
                     </div>
                     <div class="span8">
-<pre class="prettyprint linenums">&lt;p>&lt;input data-bind="value: dValue, format: 'dateTime'"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue, format: 'date'"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue, format: 'dateTime'"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue, format: 'time'"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue, format: 'yyyy年MM月dd日 HH:mm:ss'"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue" data-format="MM-dd hh:MM:ss"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: dValue, format: function(x){ return 'Function:'+ x; }"/>&lt;/p></pre>
+<pre class="prettyprint linenums">&lt;input data-bind="value: dValue, format: 'dateTime'"/>
+&lt;span data-bind="text: dValue, format: 'date'"/>
+&lt;span data-bind="text: dValue, format: 'dateTime'"/>
+&lt;span data-bind="text: dValue, format: 'time'"/>
+&lt;span data-bind="text: dValue, format: 'yyyy年MM月dd日 HH:mm:ss'"/>
+&lt;span data-bind="text: dValue" data-format="MM-dd hh:MM:ss"/>
+&lt;span data-bind="text: dValue, format: function(x){ return 'Function:'+ x; }"/></pre>
                     </div>
                 </div>
                 <br/>
@@ -90,11 +90,11 @@
                         </div>
                     </div>
                     <div class="span8">
-<pre class="prettyprint linenums">&lt;p>&lt;input data-bind="value: sValue"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: sValue"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: sValue, format: { 'dev':'开发', 'test':'测试', 'prd': '生产' }"/>&lt;/p>
-&lt;p>&lt;span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p>
-&lt;p>&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p></pre>
+<pre class="prettyprint linenums">&lt;input data-bind="value: sValue"/>
+&lt;span data-bind="text: sValue"/>
+&lt;span data-bind="text: sValue, format: { 'dev':'开发', 'test':'测试', 'prd': '生产' }"/>
+&lt;span data-bind="text: sValue" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>
+&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></pre>
                     </div>
                 </div>
                 <div class="row">
@@ -108,11 +108,11 @@
                         </div>
                     </div>
                     <div class="span8">
-<pre class="prettyprint linenums">&lt;p>&lt;span data-bind="text: ['true','false'], format:{'true':'对','false':'错'} "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: [false,true], format:{'true':'对','false':'错'} "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: 'true,false', format:{'true':'对','false':'错'}, split: true "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: 'false^false', format:{'true':'对','false':'错'}, split: '^' "/>&lt;/p>
-&lt;p>&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/>&lt;/p></pre>
+<pre class="prettyprint linenums">&lt;span data-bind="text: ['true','false'], format:{'true':'对','false':'错'} "/>
+&lt;span data-bind="text: [false,true], format:{'true':'对','false':'错'} "/>
+&lt;span data-bind="text: 'true,false', format:{'true':'对','false':'错'}, split: true "/>
+&lt;span data-bind="text: 'false^false', format:{'true':'对','false':'错'}, split: '^' "/>
+&lt;span data-bind="text: 'test,dev'" data-split="true" data-join="^" data-format='{"dev":"开发1", "test":"测试2", "prd": "生产3"}'/></pre>
                     </div>
                 </div>
             </div>
