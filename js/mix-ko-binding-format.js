@@ -63,10 +63,9 @@
             format: format,
             split: allBindingsAccessor()['split'] || $(element).data('split'),
             join: allBindingsAccessor()['join'] || $(element).data('join')
-        }
+        };
 
         if (isDeferred(format)) {
-            callback(element, valueAccessor());  // TODO without this line, the update doesn't effect on change,why?
             format.always(function (data) {
                 $(element).data('format-deferred', data);
                 updateFormatBinding(element, valueAccessor, allBindingsAccessor, callback);

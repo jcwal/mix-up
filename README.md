@@ -1,3 +1,3 @@
 mix-up
 ======
-Combine Bootstrap + Knockoutjs + JQuery together.
+Combine Semantic-UI + Knockoutjs + JQuery together.
