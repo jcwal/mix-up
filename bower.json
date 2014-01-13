@@ -1,0 +1,33 @@
+{
+  "name": "mix-up",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jcwal/mix-up",
+  "authors": [
+    "Jokeway <jokeway@gmail.com>"
+  ],
+  "description": "Combine SemanticUI + KnockoutJS + JQuery together.",
+  "main": [
+    "./dist/*"
+  ],
+  "keywords": [
+    "mix",
+    "ui",
+    "SemanticUI",
+    "KnockoutJS",
+    "JQuery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.3",
+    "knockoutjs": "~3.0.0",
+    "semantic": "~0.11.0"
+  }
+}
