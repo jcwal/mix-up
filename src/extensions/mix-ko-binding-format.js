@@ -67,6 +67,7 @@
 
         if (isDeferred(format)) {
             format.always(function (data) {
+                callback(element, valueAccessor());
                 $(element).data('format-deferred', data);
                 updateFormatBinding(element, valueAccessor, allBindingsAccessor, callback);
             });
