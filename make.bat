@@ -1,1 +1,0 @@
-copy /Y/B .\js\*.js .\docs\assets\js\mix-up.js
